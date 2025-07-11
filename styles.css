@@ -73,3 +73,25 @@ div{
     flex-direction: column;
     flex-basis: 40%;
 }
+#photos{
+    max-width: 90%;
+    display: block;
+    margin-bottom: 10px;
+}
+#coaching{
+    max-width: 60%;
+    display: block;
+    margin: auto;
+}
+@media only screen and (max-width: 800px){
+    .center{
+        text-align: center;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .row, .col1, .col2, #photos, #coaching{
+        all: unset;
+    }
+}
