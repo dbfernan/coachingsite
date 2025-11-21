@@ -99,3 +99,7 @@ div{
         display: block;
     }
 }
+iframe {
+  border: 1px solid black;
+  width: 100%;
+}
