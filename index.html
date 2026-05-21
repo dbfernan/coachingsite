@@ -1,66 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>David Fernando | CNY Tennis Coaching</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="master.css">
-        <link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <a href="#main" tabindex="1" class="skip">Skip to Content</a><br>
-        <img class="imborder" src="media/header.png" alt="David Fernando | CNY Tennis Coach">
-    <hr>
-        <div class="center">
-            <h1 id="main">Local Coaching From a Seasoned Player</h1>
-            <p>
-                Hello, I'm David -- Tennis has been one of my biggest passions for many years, and by using my knowledge of the sport and high-level competitive experience, I want to play a part in the stories of future generations in CNY through coaching! As I'm now attending Syracuse University, my days of Junior-level USTA tournaments and Varsity are over; however, I'm still playing and competing in various clubs/ leagues. I've continued to improve my game, especially on a mental level, and as a coach I aim to teach what I know about form, tactics, mentality, etc, all while having fun and developing passion for Tennis in new players!
-            </p>
-        </div>
-        <div class="row">
-            <div class="col1">
-                <img id="photos" class="border" src="media/photos.png" alt="Various Photos of David">
-            </div>
-            <div class="col2">
-            <h2>Playing/Coaching Experiences</h2>    
-                <p>
-                    <ul>
-                        <li>Played on FM's Varsity Team from 7th-12th Grade</li>
-                        <li>#1 Singles Player from 11th-12th Grade (COVID-19 was year before)</li>
-                        <li>Won many Junior-level USTA Tournaments</li>
-                        <li>Played in several Regional-level and Sectional-level Championships for various leagues</li>
-                        <li>Completed USTA's Coaching Workshop in Parsippany, NJ</li>
-                    </ul>
-                </p>
-                <p>
-                    Additionally, I've volunteered as a coach for Aceing Autism, worked as an assistant coach for Drumlins' Summer Tennis Camp, and worked as a coach for FM's Summer Tennis Camp in 2025!
-                </p>
-            </div>
-        </div>
-        <div class="center">
-            <h1>Lesson Information</h1>   
-            <ul class="centered-list">
-                <li>One-On-One Sessions: $15/hr</li>
-                <li>Group Sessions: Send me a text, we'll work something out</li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | DF Tennis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        plum:'#3b1f6e',
+                        'plum-mid':'#52308f',
+                        purple:'#7c4dbd',
+                        'purple-lt':'#a97de0',
+                        lilac:'#e8dcff',
+                        'off-white':'#f8f7ff',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { font-family: 'Nunito', sans-serif; }
+        html { background: #3b1f6e; }
+        body { background: #f8f7ff; }
+        main { animation: fadeIn 0.5s ease both; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .skip-link {
+            position: absolute; top: 1rem; left: -999px;
+            background: #3b1f6e; color: #fff; padding: 0.4rem 0.8rem;
+            text-decoration: none; border-radius: 6px; z-index: 100;
+        }
+        .skip-link:focus { left: 1rem; }
+    </style>
+
+</head>
+
+<body class="bg-off-white text-plum min-h-screen flex flex-col">
+
+    <a href="#main" class="skip-link">Skip to Content</a>
+
+
+    <!-- NAV -->
+    <nav class="bg-plum sticky top-0 z-50 shadow-md">
+
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-white font-extrabold text-lg tracking-tight hover:text-lilac transition flex items-center gap-2">
+                <img src="media/favicon.ico" class="w-5 h-5" alt="">
+                DF Tennis Coaching
+            </a>
+            <button id="hamburger" class="sm:hidden text-white/70 hover:text-white focus:outline-none" aria-label="Toggle navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <ul class="hidden sm:flex gap-2 text-sm font-semibold">
+                <li><a href="index.html"   class="bg-purple text-white px-4 py-1.5 rounded-full">Home</a></li>
+                <li><a href="lessons.html" class="text-white/70 hover:text-white px-4 py-1.5 rounded-full hover:bg-plum-mid transition">Lessons</a></li>
+                <li><a href="api-fun.html" class="text-white/70 hover:text-white px-4 py-1.5 rounded-full hover:bg-plum-mid transition">API Fun</a></li>
             </ul>
-            <p>
-                As a new coach in the area, I want players to have an accessible option to reach the next-level without having to break the bank. Therefore, I'm currently charging just below minimum wage (prices subject to change over time)
-            </p>
         </div>
-        <h2>Contacts</h2>
-            <p>
-                Phone-Number (Best): (315) 795-8823
-            </p>
-            <p>
-                Email: dbfernan@syr.edu
-            </p>
-    <hr>
-            <p>
-                &copy; 2025
-            </p>
-    </body>
+        <div id="mobile-menu" class="hidden sm:hidden bg-plum border-t border-plum-mid px-6 pb-5">
+            <ul class="flex flex-col gap-3 pt-4 text-sm font-semibold">
+                <li><a href="index.html"   class="text-white">Home</a></li>
+                <li><a href="lessons.html" class="text-white/60 hover:text-white transition">Lessons</a></li>
+                <li><a href="api-fun.html" class="text-white/60 hover:text-white transition">API Fun</a></li>
+            </ul>
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+    <main id="main" class="flex-1 max-w-5xl mx-auto w-full px-6 py-12">
+
+
+        <!-- HERO -->
+        <div class="flex flex-col sm:flex-row gap-10 items-center mb-14">
+            <div class="flex-1 text-center sm:text-left">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-plum mb-4">
+                    Local Coaching From a Seasoned Player
+                </h1>
+                <p class="text-base leading-relaxed text-plum/70 font-medium max-w-xl mx-auto sm:mx-0">
+                    Hello, I'm David! Tennis has been one of my biggest passions for many years, and by using my knowledge of the sport and high-level competitive experience, I want to play a part in the stories of future generations in CNY through coaching! As I'm now attending Syracuse University, my days of Junior-level USTA tournaments and Varsity are over — but I'm still playing and competing in various clubs and leagues. As a coach I aim to teach form, tactics, mentality, and more, all while having fun and developing passion for tennis in new players!
+                </p>
+            </div>
+
+            <!-- CAROUSEL -->
+            <div class="flex-1 flex justify-center sm:justify-end">
+                <div class="relative w-full max-w-md overflow-hidden rounded-xl border-2 border-lilac shadow-sm" id="carousel">
+                    <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+                        <img src="media/image1.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David playing tennis">
+                        <img src="media/image2.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David playing tennis">
+                        <img src="media/image3.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David playing tennis">
+                        <img src="media/image4.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David with USTA trophy">
+                        <img src="media/image5.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David at US Open 2015">
+                        <img src="media/image6.jpg" class="w-full shrink-0 object-cover aspect-[3/4]" alt="David on court">
+                    </div>
+                    <button id="prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-plum/70 hover:bg-plum text-white rounded-full w-8 h-8 flex items-center justify-center transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button id="next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-plum/70 hover:bg-plum text-white rounded-full w-8 h-8 flex items-center justify-center transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                    <div id="dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- EXPERIENCE -->
+        <div class="text-center mb-4">
+            <h2 class="text-2xl font-extrabold text-plum mb-5">Playing & Coaching Experience</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">Played on FM's Varsity Team from 7th–12th Grade</p>
+                </div>
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">#1 Singles Player from 10th–12th Grade</p>
+                </div>
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">Won many Junior-level USTA Tournaments</p>
+                </div>
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">Played in Several Sectional-level Club Championships</p>
+                </div>
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">Completed USTA's Coaching Workshop in Parsippany, NJ</p>
+                </div>
+                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                    <p class="text-md font-bold text-plum leading-snug">Coached at Aceing Autism, Drumlins' Camp & FM's Summer Camp</p>
+                </div>
+            </div>
+
+            <!-- LESSONS -->
+            <a href="lessons.html" class="mt-2 block w-full bg-white border-2 border-purple rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac transition group">
+                <p class="text-lg font-extrabold text-plum group-hover:text-plum transition flex items-center justify-center gap-2">
+                    Lesson Information
+                    <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </p>
+            </a>
+
+            <!-- API FUN -->
+            <a href="api-fun.html" class="mt-3 block w-full bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac hover:border-purple transition group">
+                <p class="text-lg font-extrabold text-plum transition flex items-center justify-center gap-2">
+                    API Fun
+                    <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </p>
+            </a>
+        </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-plum mt-10">
+        
+        <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <div class="text-center sm:text-left">
+                <p class="text-white font-bold text-sm">DF Tennis Coaching</p>
+                <p class="text-white/40 text-xs mt-0.5">CNY · Syracuse, New York</p>
+                <p class="text-white/40 text-xs mt-0.5">(315) 795-8823</p>
+            </div>
+            <div class="flex gap-4 items-center">
+                <a href="https://www.instagram.com/dbfernan06/" aria-label="Instagram" class="text-white/40 hover:text-lilac transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="mailto:dbfernan@syr.edu" aria-label="Email" class="text-white/40 hover:text-lilac transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </a>
+            </div>
+            <p class="text-white/40 text-xs">© 2026 David Fernando</p>
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        const track = document.getElementById('carousel-track');
+        const dotsContainer = document.getElementById('dots');
+        const total = track.children.length;
+        let current = 0;
+
+        for (let i = 0; i < total; i++) {
+            const d = document.createElement('button');
+            d.className = `w-2 h-2 rounded-full transition ${i === 0 ? 'bg-white' : 'bg-white/40'}`;
+            d.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(d);
+        }
+
+        function goTo(n) {
+            current = (n + total) % total;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            [...dotsContainer.children].forEach((d, i) => {
+                d.className = `w-2 h-2 rounded-full transition ${i === current ? 'bg-white' : 'bg-white/40'}`;
+            });
+        }
+
+        document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+        document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+
+        setInterval(() => goTo(current + 1), 4000);
+    </script>
+    
+</body>
 </html>
