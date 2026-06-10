@@ -92,7 +92,7 @@
     <!-- MAIN -->
     <main id="main" class="flex-1 max-w-5xl mx-auto w-full px-6 py-14 flex flex-col items-center">
 
-        <div class="text-center mb-10">
+        <div class="text-center mb-10 px-4">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-plum mb-3">Who Won the US Open<br>on Your Birthday?</h1>
             <p class="text-plum/50 text-sm font-medium max-w-xl mx-auto leading-relaxed">Enter your birthday and find out who won the US Open the year you were born!</p>
         </div>
@@ -279,8 +279,7 @@
         function showError(msg) {
             document.getElementById('result').innerHTML = `
                 <div class="slide-up bg-white border-2 border-lilac rounded-2xl px-6 py-8 text-center shadow-sm">
-                    <p class="text-3xl mb-3">🎾</p>
-                    <p class="font-extrabold text-plum mb-2">Couldn't find that one</p>
+                    <p class="font-extrabold text-plum mb-2">Year Not Found</p>
                     <p class="text-sm text-plum/50 leading-relaxed">${msg}</p>
                 </div>`;
         }
@@ -324,9 +323,9 @@
             showLoading();
             setTimeout(() => {
                 if (year < 1968) {
-                    showError(`The US Open Open Era began in 1968. We don't have records before that — but happy (belated) birthday! 🎂`);
+                    showError(`The US Open Open Era began in 1968, so we don't have records for ${year}. Try a later year!`);
                 } else if (year > 2025) {
-                    showError(`We don't have results for ${year} yet. Check back after the tournament wraps up!`);
+                    showError(`The ${year} US Open hasn't happened yet. Check back after the tournament wraps up!`);
                 } else {
                     showResult(year, usOpen[year], val);
                 }
