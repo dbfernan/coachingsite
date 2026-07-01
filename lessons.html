@@ -286,7 +286,7 @@
                     body: JSON.stringify({ email, name, goal, level, message }),
                 });
                 if (res.ok) {
-                    btn.textContent = 'Message Sent Successfully!';
+                    btn.textContent = '✓ Message Sent!';
                     btn.classList.replace('bg-purple', 'bg-green-500');
                     btn.classList.replace('hover:bg-plum-mid', 'hover:bg-green-600');
                     ['email','name','message'].forEach(id => document.getElementById(id).value = '');
