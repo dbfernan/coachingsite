@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -22,7 +22,10 @@
                         lilac:'#e8dcff',
                         'off-white':'#f8f7ff',
                     },
-                    fontFamily: { sans: ['Nunito', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
                 }
             }
         }
@@ -30,6 +33,7 @@
 
     <style>
         * { font-family: 'Nunito', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
         html { background: #3b1f6e; }
         body { background: #f8f7ff; }
         main { animation: fadeIn 0.5s ease both; }
@@ -53,6 +57,27 @@
             to   { opacity: 1; transform: translateY(0); }
         }
         .slide-up { animation: slideUp 0.4s ease both; }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up { opacity: 1; transform: none; transition: none; }
+        }
+
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(59, 31, 110, 0.18);
+        }
     </style>
 </head>
 
@@ -92,34 +117,11 @@
     <!-- MAIN -->
     <main id="main" class="flex-1 max-w-5xl mx-auto w-full px-6 py-14 flex flex-col items-center">
 
-        <div class="text-center mb-10 px-4">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-plum mb-3">Who Won the US Open<br>on Your Birthday?</h1>
-            <p class="text-plum/50 text-sm font-medium max-w-xl mx-auto leading-relaxed">Enter your birthday and find out who won the US Open the year you were born!</p>
-        </div>
-
-
-        <!-- INPUT -->
-        <div class="bg-white border-2 border-lilac rounded-2xl px-8 py-8 shadow-sm w-full max-w-xl mb-8">
-            <label for="birthday" class="block text-xs font-bold uppercase tracking-widest text-purple mb-2">Your Birthday</label>
-            <input type="date" id="birthday"
-                class="w-full border-2 border-lilac rounded-xl px-4 py-3 text-plum text-sm transition focus:outline-none focus:border-purple mb-5"
-                style="box-shadow: none;">
-            <button id="lookup-btn"
-                class="w-full bg-purple text-white font-bold py-3 rounded-xl hover:bg-plum-mid active:scale-95 transition text-sm">
-                Find Out →
-            </button>
-        </div>
-
-        <!-- RESULT -->
-        <div id="result" class="w-full max-w-xl"></div>
-
-        <div class="w-full max-w-xl my-10 h-px bg-lilac"></div>
-
         <!-- QUIZ -->
-        <div class="w-full max-w-xl">
+        <div class="fade-up w-full max-w-xl">
             <div class="text-center mb-8">
                 <h2 class="text-2xl sm:text-3xl font-extrabold text-plum mb-2">Guess the Year Game</h2>
-                <p class="text-plum/50 text-sm font-medium leading-relaxed">The name of a US Open champion is shown, pick the year they won. See how many you can get right in 10 rounds!</p>
+                <p class="text-plum/50 text-sm font-medium leading-relaxed">A year is shown, pick the champion. See how many you can get right in 10 rounds!</p>
             </div>
 
             <!-- SCOREBAR -->
@@ -139,12 +141,12 @@
             </div>
 
             <!-- CARD -->
-            <div id="quiz-card" class="bg-white border-2 border-lilac rounded-2xl overflow-hidden shadow-sm">
+            <div id="quiz-card" class="hover-lift bg-white border-2 border-lilac rounded-2xl overflow-hidden shadow-sm">
 
                 <!-- START -->
                 <div id="quiz-start" class="px-8 py-10 text-center">
                     <p class="text-5xl mb-5">🎾</p>
-                    <p class="text-plum font-bold mb-6 text-sm leading-relaxed">Test your US Open knowledge across the Open Era (1968–2025).</p>
+                    <p class="text-plum font-bold mb-6 text-sm leading-relaxed">Test your knowledge on US Open winners from this century! (2001–2025)</p>
                     <button id="quiz-start-btn" class="bg-purple text-white font-bold px-8 py-3 rounded-xl hover:bg-plum-mid active:scale-95 transition text-sm">
                         Start Game →
                     </button>
@@ -203,41 +205,18 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // US Open Winners — Men's & Women's Singles, Open Era 1968–2025; I used AI to help make this list, some are wrong but I proofed to the best of my ability
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // US Open Winners — Men's & Women's Singles, 2001–2025; I used AI to help make this list, some are wrong but I proofed to the best of my ability
         const usOpen = {
-            1968: { mens: 'Arthur Ashe', womens: 'Virginia Wade' },
-            1969: { mens: 'Rod Laver', womens: 'Margaret Court' },
-            1970: { mens: 'Ken Rosewall', womens: 'Margaret Court' },
-            1971: { mens: 'Stan Smith', womens: 'Billie Jean King' },
-            1972: { mens: 'Ilie Năstase', womens: 'Billie Jean King' },
-            1973: { mens: 'John Newcombe', womens: 'Margaret Court' },
-            1974: { mens: 'Jimmy Connors', womens: 'Billie Jean King' },
-            1975: { mens: 'Manuel Orantes', womens: 'Chris Evert' },
-            1976: { mens: 'Jimmy Connors', womens: 'Chris Evert' },
-            1977: { mens: 'Guillermo Vilas', womens: 'Chris Evert' },
-            1978: { mens: 'Jimmy Connors', womens: 'Chris Evert' },
-            1979: { mens: 'John McEnroe', womens: 'Tracy Austin' },
-            1980: { mens: 'John McEnroe', womens: 'Chris Evert Lloyd' },
-            1981: { mens: 'John McEnroe', womens: 'Tracy Austin' },
-            1982: { mens: 'Jimmy Connors', womens: 'Chris Evert Lloyd' },
-            1983: { mens: 'Jimmy Connors', womens: 'Martina Navratilova' },
-            1984: { mens: 'John McEnroe', womens: 'Martina Navratilova' },
-            1985: { mens: 'Ivan Lendl', womens: 'Hana Mandlíková' },
-            1986: { mens: 'Ivan Lendl', womens: 'Martina Navratilova' },
-            1987: { mens: 'Ivan Lendl', womens: 'Martina Navratilova' },
-            1988: { mens: 'Mats Wilander', womens: 'Steffi Graf' },
-            1989: { mens: 'Boris Becker', womens: 'Steffi Graf' },
-            1990: { mens: 'Pete Sampras', womens: 'Gabriela Sabatini' },
-            1991: { mens: 'Stefan Edberg', womens: 'Monica Seles' },
-            1992: { mens: 'Stefan Edberg', womens: 'Monica Seles' },
-            1993: { mens: 'Pete Sampras', womens: 'Steffi Graf' },
-            1994: { mens: 'Andre Agassi', womens: 'Arantxa Sánchez Vicario' },
-            1995: { mens: 'Pete Sampras', womens: 'Steffi Graf' },
-            1996: { mens: 'Pete Sampras', womens: 'Steffi Graf' },
-            1997: { mens: 'Patrick Rafter', womens: 'Martina Hingis' },
-            1998: { mens: 'Patrick Rafter', womens: 'Lindsay Davenport' },
-            1999: { mens: 'Andre Agassi', womens: 'Serena Williams' },
-            2000: { mens: 'Marat Safin', womens: 'Venus Williams' },
             2001: { mens: 'Lleyton Hewitt', womens: 'Venus Williams' },
             2002: { mens: 'Pete Sampras', womens: 'Serena Williams' },
             2003: { mens: 'Andy Roddick', womens: 'Justine Henin' },
@@ -264,73 +243,6 @@
             2024: { mens: 'Jannik Sinner', womens: 'Aryna Sabalenka' },
             2025: { mens: 'Carlos Alcaraz', womens: 'Aryna Sabalenka' },
         };
-
-        function showLoading() {
-            document.getElementById('result').innerHTML = `
-                <div class="flex flex-col items-center gap-4 py-10 text-plum/40">
-                    <div class="relative w-10 h-10">
-                        <div class="pulse-ring absolute inset-0 rounded-full border-2 border-purple"></div>
-                        <div class="absolute inset-0 rounded-full border-2 border-purple/30"></div>
-                    </div>
-                    <p class="text-sm font-semibold">Checking the records…</p>
-                </div>`;
-        }
-
-        function showError(msg) {
-            document.getElementById('result').innerHTML = `
-                <div class="slide-up bg-white border-2 border-lilac rounded-2xl px-6 py-8 text-center shadow-sm">
-                    <p class="font-extrabold text-plum mb-2">Year Not Found</p>
-                    <p class="text-sm text-plum/50 leading-relaxed">${msg}</p>
-                </div>`;
-        }
-
-        function showResult(year, data, dateStr) {
-            const d = new Date(dateStr + 'T12:00:00');
-            const formatted = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-            document.getElementById('result').innerHTML = `
-                <div class="slide-up bg-white border-2 border-lilac rounded-2xl overflow-hidden shadow-sm">
-                    <div class="bg-plum px-6 py-6 text-center">
-                        <p class="text-lilac/50 text-xs font-bold uppercase tracking-widest mb-1.5">${formatted}</p>
-                        <p class="text-white text-2xl font-extrabold">${year} US Open</p>
-                    </div>
-                    <div class="divide-y divide-lilac">
-                        <div class="px-6 py-5 flex items-center gap-4">
-                            <div class="w-11 h-11 rounded-full bg-lilac flex items-center justify-center shrink-0 text-xl">🏆</div>
-                            <div>
-                                <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-0.5">Men's Singles</p>
-                                <p class="text-base font-extrabold text-plum">${data.mens}</p>
-                            </div>
-                        </div>
-                        <div class="px-6 py-5 flex items-center gap-4">
-                            <div class="w-11 h-11 rounded-full bg-lilac flex items-center justify-center shrink-0 text-xl">🏆</div>
-                            <div>
-                                <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-0.5">Women's Singles</p>
-                                <p class="text-base font-extrabold text-plum">${data.womens}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-        }
-
-        document.getElementById('lookup-btn').addEventListener('click', () => {
-            const val = document.getElementById('birthday').value;
-            if (!val) { showError('Please pick your birthday first!'); return; }
-            const year = parseInt(val.split('-')[0]);
-            showLoading();
-            setTimeout(() => {
-                if (year < 1968) {
-                    showError(`The US Open Open Era began in 1968, so we don't have records for ${year}. Try a later year!`);
-                } else if (year > 2025) {
-                    showError(`The ${year} US Open hasn't happened yet. Check back after the tournament wraps up!`);
-                } else {
-                    showResult(year, usOpen[year], val);
-                }
-            }, 650);
-        });
-
-        document.getElementById('birthday').addEventListener('keydown', e => {
-            if (e.key === 'Enter') document.getElementById('lookup-btn').click();
-        });
 
         // GUESS THE YEAR GAME
         const years = Object.keys(usOpen).map(Number);

@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -24,6 +24,7 @@
                     },
                     fontFamily: {
                         sans: ['Nunito', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
                     },
                 }
             }
@@ -32,6 +33,7 @@
 
     <style>
         * { font-family: 'Nunito', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
         html { background: #3b1f6e; }
         body { background: #f8f7ff; }
         main { animation: fadeIn 0.5s ease both; }
@@ -45,6 +47,38 @@
             text-decoration: none; border-radius: 6px; z-index: 100;
         }
         .skip-link:focus { left: 1rem; }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up { opacity: 1; transform: none; transition: none; }
+        }
+
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(59, 31, 110, 0.18);
+        }
+
+        .section-divider {
+            display: block;
+            width: 100%;
+            height: 60px;
+            margin: 0 -1.5rem;
+            width: calc(100% + 3rem);
+        }
+        .eyebrow {
+            letter-spacing: 0.14em;
+        }
     </style>
 
 </head>
@@ -89,9 +123,10 @@
 
 
         <!-- HERO -->
-        <div class="flex flex-col sm:flex-row gap-10 items-center mb-14">
+        <div class="fade-up flex flex-col sm:flex-row gap-10 items-center">
             <div class="flex-1 text-center sm:text-left">
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-plum mb-4">
+                <p class="eyebrow text-xs font-bold uppercase text-purple/70 mb-3">CNY · Syracuse, New York</p>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-plum mb-5 leading-[1.1] tracking-tight">
                     Local Coaching From a Seasoned Player
                 </h1>
                 <p class="text-left text-base leading-relaxed text-plum/70 font-medium max-w-xl mx-auto sm:mx-0">
@@ -123,48 +158,61 @@
         </div>
 
 
-        <!-- EXPERIENCE -->
-        <div class="text-center mb-4">
-            <h2 class="text-2xl font-extrabold text-plum mb-5">Playing & Coaching Experience</h2>
+    </main>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">Played on FM's Varsity Team from 7th–12th Grade</p>
+    <!-- DIVIDER -->
+    <svg class="section-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#e8dcff" fill-opacity="0.4"></path>
+    </svg>
+
+    <div class="flex-1 bg-lilac/20 py-12">
+        <div class="max-w-5xl mx-auto w-full px-6">
+
+            <!-- EXPERIENCE -->
+            <div class="fade-up text-center mb-4">
+                <p class="eyebrow text-xs font-bold uppercase text-purple/70 mb-2">Track Record</p>
+                <h2 class="text-3xl font-extrabold text-plum mb-5 tracking-tight">Playing & Coaching Experience</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">Played on FM's Varsity Team from 7th–12th Grade</p>
+                    </div>
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">#1 Singles Player from 10th–12th Grade</p>
+                    </div>
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">Won many Junior-level USTA Tournaments</p>
+                    </div>
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">Played in Several Sectional-level Club Championships</p>
+                    </div>
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">Completed USTA's Coaching Workshop in Parsippany, NJ</p>
+                    </div>
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
+                        <p class="text-md font-bold text-plum leading-snug">Coached at Aceing Autism, Drumlins' Camp & FM's Summer Camp</p>
+                    </div>
                 </div>
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">#1 Singles Player from 10th–12th Grade</p>
-                </div>
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">Won many Junior-level USTA Tournaments</p>
-                </div>
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">Played in Several Sectional-level Club Championships</p>
-                </div>
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">Completed USTA's Coaching Workshop in Parsippany, NJ</p>
-                </div>
-                <div class="bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-left shadow-sm">
-                    <p class="text-md font-bold text-plum leading-snug">Coached at Aceing Autism, Drumlins' Camp & FM's Summer Camp</p>
-                </div>
+
+                <!-- LESSONS -->
+                <a href="lessons.html" class="hover-lift mt-2 block w-full bg-white border-2 border-purple rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac transition group">
+                    <p class="text-lg font-extrabold text-plum group-hover:text-plum transition flex items-center justify-center gap-2">
+                        Lesson Information
+                        <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </p>
+                </a>
+
+                <!-- API FUN -->
+                <a href="api-fun.html" class="hover-lift mt-3 block w-full bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac hover:border-purple transition group">
+                    <p class="text-lg font-extrabold text-plum transition flex items-center justify-center gap-2">
+                        API Fun
+                        <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </p>
+                </a>
             </div>
 
-            <!-- LESSONS -->
-            <a href="lessons.html" class="mt-2 block w-full bg-white border-2 border-purple rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac transition group">
-                <p class="text-lg font-extrabold text-plum group-hover:text-plum transition flex items-center justify-center gap-2">
-                    Lesson Information
-                    <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                </p>
-            </a>
-
-            <!-- API FUN -->
-            <a href="api-fun.html" class="mt-3 block w-full bg-white border-2 border-lilac rounded-2xl px-6 py-5 text-center shadow-sm hover:bg-lilac hover:border-purple transition group">
-                <p class="text-lg font-extrabold text-plum transition flex items-center justify-center gap-2">
-                    API Fun
-                    <svg class="w-4 h-4 text-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                </p>
-            </a>
         </div>
-    </main>
+    </div>
 
 
     <!-- FOOTER -->
@@ -218,6 +266,16 @@
         document.getElementById('next').addEventListener('click', () => goTo(current + 1));
 
         setInterval(() => goTo(current + 1), 4000);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
     
 </body>

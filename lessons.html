@@ -7,7 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="media/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -24,6 +24,7 @@
                     },
                     fontFamily: {
                         sans: ['Nunito', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
                     },
                 }
             }
@@ -32,6 +33,7 @@
 
     <style>
         * { font-family: 'Nunito', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
         html { background: #3b1f6e; }
         body { background: #f8f7ff; }
         main { animation: fadeIn 0.5s ease both; }
@@ -51,6 +53,24 @@
             box-shadow: 0 0 0 3px #e8dcff;
             border-color: #7c4dbd;
         }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up { opacity: 1; transform: none; transition: none; }
+        }
+        .hover-lift {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(59, 31, 110, 0.18);
+        }
+        .eyebrow { letter-spacing: 0.14em; }
     </style>
 </head>
 
@@ -88,22 +108,23 @@
 
 
     <!-- MAIN -->
-    <main id="main" class="flex-1 max-w-5xl mx-auto w-full px-6 py-12">
+    <main id="main" class="max-w-5xl mx-auto w-full px-6 py-12">
 
-        <div class="flex flex-col lg:flex-row gap-14 items-center mb-12">
+        <div class="fade-up flex flex-col lg:flex-row gap-14 items-center">
             <div class="hidden lg:block flex-shrink-0 w-full max-w-xs lg:max-w-sm">
                 <img src="media/df-tennis-ad.png" alt="DF Tennis Lessons Ad" class="w-full rounded-2xl border-2 border-lilac shadow-sm">
             </div>
             <div class="flex-1 text-center lg:text-left">
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-plum mb-5">Lesson Information</h1>
+                <p class="eyebrow text-xs font-bold uppercase text-purple/70 mb-2">Private & Group Coaching</p>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-plum mb-5 leading-[1.1] tracking-tight">Lesson Information</h1>
 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8">
-                    <div class="bg-white border-2 border-lilac rounded-2xl px-8 py-6 text-center max-w-xs w-full shadow-sm">
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-8 py-6 text-center max-w-xs w-full shadow-sm">
                         <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-2">Private Lessons</p>
                         <p class="text-3xl font-extrabold text-plum">$30<span class="text-base font-semibold text-plum/40"> / hr</span></p>
                         <p class="text-sm text-plum/50 mt-1">+30 min for $10</p>
                     </div>
-                    <div class="bg-white border-2 border-lilac rounded-2xl px-8 py-6 text-center max-w-xs w-full shadow-sm">
+                    <div class="hover-lift bg-white border-2 border-lilac rounded-2xl px-8 py-6 text-center max-w-xs w-full shadow-sm">
                         <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-2">Group Lessons</p>
                         <p class="text-3xl font-extrabold text-plum">$20<span class="text-base font-semibold text-plum/40"> / hr</span></p>
                         <p class="text-sm text-plum/50 mt-1">+30 min for $10</p>
@@ -111,101 +132,104 @@
                 </div>
 
                 <p class="max-w-2xl text-sm text-plum/70 font-medium leading-relaxed mb-5 mx-auto lg:mx-0">
-                    I know very well that tennis can be an expensive sport. My goal as a coach is to offer an accessible option for players to reach the next level without having to break the bank! First lesson also comes with a $5 discount<br><br>(Prices are subject to change over time)
+                    I know very well that tennis can be an expensive sport. My goal as a coach is to offer an accessible option for players to reach the next level without having to break the bank!<br><br>(Prices are subject to change over time)
                 </p>
             </div>
         </div>
 
-        <div class="text-center mb-12">
-            <h2 class="text-2xl font-extrabold text-plum text-center mt-2 mb-5">Contact</h2>
-
-            <div class="flex gap-10 justify-center flex-wrap mb-5">
-                <div class="text-center">
-                    <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-1">Phone (Preferred)</p>
-                    <p class="text-xl font-extrabold text-plum">(315) 795-8823</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-1">Email</p>
-                    <p class="text-xl font-extrabold text-plum">dbfernan@syr.edu</p>
-                </div>
-            </div>
-
-            <p class="max-w-2xl mx-auto text-sm text-plum/70 font-medium leading-relaxed mb-5">
-                My availability is pretty flexible, although can vary week to week. Message me so we can find a time that works for you!
-            </p>
-
-        </div>
-
-        <div class="w-full max-w-xl my-10 h-px bg-lilac mx-auto"></div>
-
-        <!-- FORM -->
-        <div class="max-w-2xl mx-auto">
-
-            <h2 class="text-2xl font-extrabold text-plum text-center mb-6">Get in Touch</h2>
-
-            <div class="bg-white border border-lilac rounded-2xl p-8 flex flex-col gap-5 shadow-sm">
-                <div>
-                    <label for="email" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Email Address</label>
-                    <input type="email" id="email" placeholder="name@example.com"
-                        class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 transition">
-                </div>
-                <div>
-                    <label for="name" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Name</label>
-                    <input type="text" id="name" placeholder="Your Name"
-                        class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 transition">
-                </div>
-                <div>
-                    <p class="block text-xs font-bold uppercase tracking-widest text-purple mb-2">Goal</p>
-                    <div class="flex flex-wrap gap-3">
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="goal" value="fun" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Fun-Focused</span>
-                        </label>
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="goal" value="competition" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Competition-Focused</span>
-                        </label>
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="goal" value="mix" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Mix of Both</span>
-                        </label>
-                    </div>
-                </div>
-                <div>
-                    <p class="block text-xs font-bold uppercase tracking-widest text-purple mb-2">Level</p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="level" value="beginner" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Beginner</span>
-                        </label>
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="level" value="intermediate" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Intermediate</span>
-                        </label>
-                        <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
-                            <input type="radio" name="level" value="advanced" class="accent-purple shrink-0">
-                            <span class="text-sm font-semibold text-plum">Advanced</span>
-                        </label>
-                    </div>
-                </div>
-                <div>
-                    <label for="fav-player" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Favorite Tennis Player?</label>
-                    <input type="text" id="fav-player" placeholder="e.g. Roger Federer"
-                        class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 transition">
-                </div>
-                <div>
-                    <label for="message" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Message</label>
-                    <textarea id="message" rows="4" placeholder="Your message..."
-                        class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 resize-none transition"></textarea>
-                </div>
-                <button type="button"
-                    class="w-full bg-purple text-white font-bold py-3 rounded-xl hover:bg-plum-mid transition text-sm">
-                    Send Message
-                </button>
-            </div>
-
-        </div>
     </main>
+
+    <!-- DIVIDER -->
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:60px;">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#e8dcff" fill-opacity="0.4"></path>
+    </svg>
+
+    <div class="flex-1 bg-lilac/20 py-12">
+        <div class="max-w-5xl mx-auto w-full px-6">
+
+            <div class="fade-up text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-plum tracking-tight mb-5">Contact</h2>
+
+                <div class="flex gap-10 justify-center flex-wrap mb-5">
+                    <div class="text-center">
+                        <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-1">Phone (Preferred)</p>
+                        <p class="text-xl font-extrabold text-plum">(315) 795-8823</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs font-bold uppercase tracking-widest text-purple/60 mb-1">Email</p>
+                        <p class="text-xl font-extrabold text-plum">dbfernan@syr.edu</p>
+                    </div>
+                </div>
+
+                <p class="max-w-2xl mx-auto text-sm text-plum/70 font-medium leading-relaxed">
+                    My availability is pretty flexible, although can vary week to week. Message me so we can find a time that works for you! I also accept payments via in-person cash, or digitally through Paypal and Venmo. If you'd like to pay digitally, message me for either my Paypal or Venmo information.
+                </p>
+            </div>
+
+            <!-- FORM -->
+            <div class="fade-up max-w-2xl mx-auto">
+                <p class="eyebrow text-xs font-bold uppercase text-purple/70 text-center mb-2">Send a Message</p>
+                <h2 class="text-3xl font-extrabold text-plum tracking-tight text-center mb-6">Get in Touch</h2>
+
+                <div class="bg-white border border-lilac rounded-2xl p-8 flex flex-col gap-5 shadow-sm">
+                    <div>
+                        <label for="email" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Email Address</label>
+                        <input type="email" id="email" placeholder="name@example.com"
+                            class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 transition">
+                    </div>
+                    <div>
+                        <label for="name" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Name</label>
+                        <input type="text" id="name" placeholder="Your Name"
+                            class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 transition">
+                    </div>
+                    <div>
+                        <p class="block text-xs font-bold uppercase tracking-widest text-purple mb-2">Goal</p>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="goal" value="fun" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Fun-Focused</span>
+                            </label>
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="goal" value="competition" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Competition-Focused</span>
+                            </label>
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="goal" value="mix" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Mix of Both</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="block text-xs font-bold uppercase tracking-widest text-purple mb-2">Level</p>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="level" value="beginner" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Beginner</span>
+                            </label>
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="level" value="intermediate" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Intermediate</span>
+                            </label>
+                            <label class="flex-1 flex items-center gap-3 border-2 border-lilac rounded-xl px-4 py-3 cursor-pointer hover:border-purple transition has-[:checked]:border-purple has-[:checked]:bg-lilac">
+                                <input type="radio" name="level" value="advanced" class="accent-purple shrink-0">
+                                <span class="text-sm font-semibold text-plum">Advanced</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-xs font-bold uppercase tracking-widest text-purple mb-1.5">Message</label>
+                        <textarea id="message" rows="4" placeholder="Your message..."
+                            class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 resize-none transition"></textarea>
+                    </div>
+                    <button type="button"
+                        class="w-full bg-purple text-white font-bold py-3 rounded-xl hover:bg-plum-mid transition text-sm">
+                        Submit
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
     <!-- FOOTER -->
@@ -234,6 +258,16 @@
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 
 </body>
