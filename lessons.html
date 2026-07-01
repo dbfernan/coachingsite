@@ -129,10 +129,10 @@
                     </div>
                 </div>
 
-                <p class="text-left text-base max-w-2xl text-sm text-plum/70 font-medium leading-relaxed mb-5 mx-auto lg:mx-0">
+                <p class="text-left text-base max-w-2xl text-plum/70 font-medium leading-relaxed mb-5 mx-auto lg:mx-0">
                     I know very well that tennis can be an expensive sport. My goal as a coach is to offer an accessible option for players to reach the next level without having to break the bank!
                 </p>
-                <p class="max-w-2xl text-sm text-plum/70 font-medium leading-relaxed mb-5 mx-auto lg:mx-0">
+                <p class="max-w-2xl text-sm text-plum/50 mt-1 mx-auto lg:mx-0">
                     (Prices are subject to change over time)
                 </p>
             </div>
@@ -222,10 +222,11 @@
                         <textarea id="message" rows="4" placeholder="Your message..."
                             class="w-full border border-lilac rounded-xl px-4 py-3 text-plum text-sm placeholder-plum/30 resize-none transition"></textarea>
                     </div>
-                    <button type="button"
+                    <button type="button" id="submit-btn"
                         class="w-full bg-purple text-white font-bold py-3 rounded-xl hover:bg-plum-mid transition text-sm">
                         Submit
                     </button>
+                    <p id="form-error" class="hidden text-sm text-red-500 font-medium text-center"></p>
                 </div>
             </div>
 
@@ -258,6 +259,47 @@
     <script>
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('submit-btn').addEventListener('click', async () => {
+            const email   = document.getElementById('email').value.trim();
+            const name    = document.getElementById('name').value.trim();
+            const goal    = document.querySelector('input[name="goal"]:checked')?.value || '';
+            const level   = document.querySelector('input[name="level"]:checked')?.value || '';
+            const message = document.getElementById('message').value.trim();
+            const errorEl = document.getElementById('form-error');
+            const btn     = document.getElementById('submit-btn');
+
+            if (!email || !name || !message) {
+                errorEl.textContent = 'Please fill in all fields before submitting.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
+            btn.textContent = 'Sending…';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('https://formspree.io/f/xvzjwdgo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ email, name, goal, level, message }),
+                });
+                if (res.ok) {
+                    btn.textContent = 'Message Sent Successfully!';
+                    btn.classList.replace('bg-purple', 'bg-green-500');
+                    btn.classList.replace('hover:bg-plum-mid', 'hover:bg-green-600');
+                    ['email','name','message'].forEach(id => document.getElementById(id).value = '');
+                    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+                } else {
+                    throw new Error();
+                }
+            } catch {
+                errorEl.textContent = 'Something went wrong. Please try again or reach out directly.';
+                errorEl.classList.remove('hidden');
+                btn.textContent = 'Submit';
+                btn.disabled = false;
+            }
         });
 
         const observer = new IntersectionObserver((entries) => {

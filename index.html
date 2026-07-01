@@ -35,7 +35,7 @@
         * { font-family: 'Nunito', sans-serif; }
         h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
         html { background: #3b1f6e; }
-        body { background: #f8f7ff; }
+        body { background: #f8f7ff; overflow-x: hidden; }
         main { animation: fadeIn 0.5s ease both; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
@@ -69,13 +69,6 @@
             box-shadow: 0 12px 24px -8px rgba(59, 31, 110, 0.18);
         }
 
-        .section-divider {
-            display: block;
-            width: 100%;
-            height: 60px;
-            margin: 0 -1.5rem;
-            width: calc(100% + 3rem);
-        }
         .eyebrow {
             letter-spacing: 0.14em;
         }
@@ -158,7 +151,7 @@
     </main>
 
     <!-- DIVIDER -->
-    <svg class="section-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg style="display:block;width:100%;height:60px;" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#e8dcff" fill-opacity="0.4"></path>
     </svg>
 
@@ -235,11 +228,12 @@
         const dotsContainer = document.getElementById('dots');
         const total = track.children.length;
         let current = 0;
+        let autoplay = setInterval(() => goTo(current + 1), 4000);
 
         for (let i = 0; i < total; i++) {
             const d = document.createElement('button');
-            d.className = `w-2 h-2 rounded-full transition ${i === 0 ? 'bg-white' : 'bg-white/40'}`;
-            d.addEventListener('click', () => goTo(i));
+            d.className = `w-2 h-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-white w-4' : 'bg-white/40'}`;
+            d.addEventListener('click', () => { goTo(i); resetAutoplay(); });
             dotsContainer.appendChild(d);
         }
 
@@ -247,14 +241,29 @@
             current = (n + total) % total;
             track.style.transform = `translateX(-${current * 100}%)`;
             [...dotsContainer.children].forEach((d, i) => {
-                d.className = `w-2 h-2 rounded-full transition ${i === current ? 'bg-white' : 'bg-white/40'}`;
+                d.className = `h-2 rounded-full transition-all duration-300 ${i === current ? 'bg-white w-4' : 'bg-white/40 w-2'}`;
             });
         }
 
-        document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
-        document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+        function resetAutoplay() {
+            clearInterval(autoplay);
+            autoplay = setInterval(() => goTo(current + 1), 4000);
+        }
 
-        setInterval(() => goTo(current + 1), 4000);
+        document.getElementById('prev').addEventListener('click', () => { goTo(current - 1); resetAutoplay(); });
+        document.getElementById('next').addEventListener('click', () => { goTo(current + 1); resetAutoplay(); });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        const carouselEl = document.getElementById('carousel');
+        carouselEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        carouselEl.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) {
+                goTo(diff > 0 ? current + 1 : current - 1);
+                resetAutoplay();
+            }
+        }, { passive: true });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
